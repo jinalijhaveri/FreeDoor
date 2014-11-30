@@ -37,6 +37,10 @@ app.put('/category/:categoryId/product/:productId', category.updateProduct);
 app.get('/category/:categoryId/product', category.getProducts);
 app.post('/category/:categoryId/product', category.createProducts);
 
+// Get Offer History
+app.get('/category/:categoryId/product/:productId/offer/:offerId/history',category.getOfferHistory);
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
