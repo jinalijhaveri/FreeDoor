@@ -3,9 +3,41 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+    
+        <!-- Delete Product <script>
+    jQuery.ajax({url: "/category/1/product/1", type: "DELETE", success: function(data, textStatus, jqXHR) { console.dir(data); }});
+
+    
+    </script>-->
+    
+    <script>
+    jQuery.ajax({
+        url: "/category/1/product/1", 
+        type: "PUT",
+        data: {
+          "productName": "T-shirt",  
+          "quantity": 5,  
+          "expectedOffer": "I would like to get Cardigan.",
+          "description":"Nike T-shirt",
+    		"expiryDate":"2014-12-31",
+    		"isValid":1,
+    		"categoryId":2
+        }, 
+        success: function (data, textStatus, jqXHR) { 
+            console.log("Post resposne:"); 
+            console.dir(data); 
+            console.log(textStatus); 
+            console.dir(jqXHR); 
+        }
+    });
+    
+    </script>
   </body>
 </html>
