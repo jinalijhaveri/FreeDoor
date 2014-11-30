@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var mysql = require('mysql');
 var dbCon = require('./dbConnection');
 
@@ -29,7 +29,7 @@ function postComment(req , res){
 }
 
 exports.postComment = postComment;
-=======
+
 
 
 var dbConn = require('../model/dbConnection');
@@ -166,4 +166,4 @@ exports.getProducts=function(req,res){
 
 	
 }
->>>>>>> origin/master
+
