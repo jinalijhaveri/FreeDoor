@@ -41,17 +41,5 @@ exports.updateProduct = function(callback,productId,categoryId,productName,quant
 			
 }
 
-exports.getOfferHistory = function(callback,offerId){
-	var query = 'select * from offerhistory where offerId='+offerId;
-	console.log("Get Offer History : "+query);
-	connection.query(query, function(err, rows) {
-			
-			callback(err, rows);
-	});
-			
-}
-
-
-
 
 

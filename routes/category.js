@@ -25,9 +25,6 @@ exports.deleteProduct = function(req, res){
 	
 };
 
-
-
-
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
@@ -42,19 +39,6 @@ exports.updateProduct = function(req, res){
 		console.log(rows);
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
-	
-};
-
-
-exports.getOfferHistory= function(req, res){
-	var offerId = req.params.offerId;
-	
-	dbConn.getOfferHistory(function(err,rows){
-		if(rows.length == 0)
-			res.send("Not found matching records.");
-		else
-		 res.send(rows);
-	},offerId);
 	
 };
 
