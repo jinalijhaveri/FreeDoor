@@ -33,7 +33,8 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/category/:categoryId/product/:productId', category.getProductDetails);
 app.delete('/category/:categoryId/product/:productId', category.deleteProduct);
-
+app.get('/category/:categoryId/product', category.getProducts);
+app.post('/category/:categoryId/product', category.createProducts);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
