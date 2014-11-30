@@ -9,7 +9,7 @@ var user = require('./routes/user');
 var category = require('./routes/category');
 var http = require('http');
 var path = require('path');
-
+var category = require('./routes/category');
 var app = express();
 
 // all environments
@@ -31,18 +31,27 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+<<<<<<< HEAD
+app.get('/test' , category.postComment);
+app.post('/category/:categoryId/product/:productId/offer/:offerId/comment' , category.postComment); 
+app.post('/user', user.createUser)
+=======
 app.get('/category/:categoryId/product/:productId', category.getProductDetails);
 app.delete('/category/:categoryId/product/:productId', category.deleteProduct);
 app.put('/category/:categoryId/product/:productId', category.updateProduct);
 app.get('/category/:categoryId/product', category.getProducts);
 app.post('/category/:categoryId/product', category.createProducts);
 
+<<<<<<< HEAD
 ///nirav
 app.get('/category',category.getCategories);
 app.post('/category',category.addCategories);
 ///
 
 
+=======
+>>>>>>> origin/master
+>>>>>>> 3da8d630822db56aaba20ae485ee600a579b8eff
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
