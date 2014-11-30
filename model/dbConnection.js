@@ -2,11 +2,11 @@
  * New node file
  */
 
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var connection = mysql.createConnection({
 	host : 'localhost',
 	user : 'root',
-	password : 'welcome',
+	password : '1202',
 	port : '3306',
 	database : 'freedoor'
 });
@@ -26,6 +26,26 @@ exports.deleteProduct = function(callback,productId,categoryId){
 	
 	connection.query(query, function(err, rows) {
 			
+			callback(err, rows);
+	});
+			
+}
+
+exports.getCategories = function(callback){
+	var query = 'select * from category';
+	console.log('Inside: dbConnection.js');
+	connection.query(query, function(err, rows) {
+			connection.release();
+			callback(err, rows);
+	});
+			
+}
+
+exports.addCategories = function(callback,categoryName){
+	var query = "INSERT INTO category (`categoryId`,`categoryName`) VALUES(101,'"+ categoryName +"');";
+	console.log('Inside: dbConnection.js');
+	connection.query(query, function(err, rows) {
+			//connection.release();
 			callback(err, rows);
 	});
 			
