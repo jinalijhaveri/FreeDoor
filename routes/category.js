@@ -28,15 +28,20 @@ function postComment(req , res){
 
 		res.send(JSON.stringify(respose));
 		//con.release();
-	})
+	});
 
 }
 
 exports.postComment = postComment;
+<<<<<<< HEAD
 
 
 
 var dbConn = require('../model/dbConnection');
+=======
+
+
+>>>>>>> origin/master
 
 //var categoryQuery = require('../models/categoryQuery');
 
@@ -45,7 +50,7 @@ exports.getProductDetails = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
 	dbConn.getProductDetails(function(err,rows){
-		console.log(rows);
+		console.log("rows"+rows);
 		if(rows.length == 0)
 			res.send("Not found matching records.");
 		else
@@ -73,8 +78,13 @@ exports.getCategories = function(req, res){
 
 		 res.send(JSON.stringify(resposnse));
 	});
+<<<<<<< HEAD
 };
 
+=======
+	
+}
+>>>>>>> origin/master
 
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
@@ -91,11 +101,28 @@ exports.updateProduct = function(req, res){
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
 
+<<<<<<< HEAD
+=======
+}
+
+exports.getOfferHistory= function(req, res){
+	var offerId = req.params.offerId;
+	
+	dbConn.getOfferHistory(function(err,rows){
+		if(rows.length == 0)
+			res.send("Not found matching records.");
+		else
+		 res.send(rows);
+	},offerId);
+>>>>>>> origin/master
 	
 };
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 exports.addCategories = function(req, res){
 
 	console.log('Inside: addCategories category.js');
@@ -114,7 +141,10 @@ exports.addCategories = function(req, res){
 	},categoryName);
 	
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
 
 
@@ -207,6 +237,7 @@ exports.getProducts=function(req,res){
 	
 }
 
+<<<<<<< HEAD
 /////////////
 
 ///Adding and retriving offer
@@ -232,3 +263,5 @@ exports.addOffer = function (req , res){
 }
 
 
+=======
+>>>>>>> origin/master

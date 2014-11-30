@@ -52,8 +52,15 @@ app.post('/category/:categoryId/product/:productId/offer',offerService.addOffer)
 app.get('/category/:categoryId/product/:productId/offer',offerService.getoffers);
 ///
 
+//Get Offer History
+app.get('/category/:categoryId/product/:productId/offer/:offerId/history',category.getOfferHistory);
 
 
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
