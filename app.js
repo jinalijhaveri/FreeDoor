@@ -35,6 +35,12 @@ app.get('/category/:categoryId/product/:productId', category.getProductDetails);
 app.delete('/category/:categoryId/product/:productId', category.deleteProduct);
 
 
+///nirav
+app.get('/category',category.getCategories);
+app.post('/category',category.addCategories);
+///
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
