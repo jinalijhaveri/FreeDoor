@@ -2,7 +2,7 @@
 /*
  * GET users listing.
  */
- var dbCon = require('./dbConnection');
+var dbCon = require('../model/dbConnection');
 
 
 exports.list = function(req, res){
