@@ -33,12 +33,16 @@ exports.postComment = postComment;
 
 
 var dbConn = require('../model/dbConnection');
+<<<<<<< HEAD
+//var categoryQuery = require('../models/categoryQuery');
+=======
+>>>>>>> origin/master
 
 exports.getProductDetails = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
 	dbConn.getProductDetails(function(err,rows){
-		console.log(rows);
+		console.log("rows"+rows);
 		if(rows.length == 0)
 			res.send("Not found matching records.");
 		else
@@ -57,6 +61,16 @@ exports.deleteProduct = function(req, res){
 	
 };
 
+<<<<<<< HEAD
+exports.getCategories = function(req, res){
+	console.log('Inside: getCategories category.js');
+	dbConn.getCategories(function(err,rows){
+		var resposnse = {'categories' : rows};
+		console.log(JSON.stringify(resposnse));
+
+		 res.send(JSON.stringify(resposnse));
+	});
+=======
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
@@ -71,10 +85,31 @@ exports.updateProduct = function(req, res){
 		console.log(rows);
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
+>>>>>>> origin/master
 	
 };
 
 
+<<<<<<< HEAD
+exports.addCategories = function(req, res){
+
+	console.log('Inside: addCategories category.js');
+	var categoryName = req.body.categoryName;
+
+	dbConn.addCategories(function(err,rows){
+		if(err){
+			console.log(err);
+		}else{
+			console.log(JSON.stringify(rows));
+			var resposnse = {categoryId : rows.insertId,categoryName : categoryName };
+			console.log("Inserted Category:  "+ JSON.stringify(resposnse));
+
+			 res.send(JSON.stringify(resposnse));
+		}
+	},categoryName);
+	
+};
+=======
 
 
 
