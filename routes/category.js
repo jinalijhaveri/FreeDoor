@@ -25,6 +25,25 @@ exports.deleteProduct = function(req, res){
 	
 };
 
+exports.updateProduct = function(req, res){
+	var categoryId = req.params.categoryId;
+	var productId = req.params.productId;
+	var productName	= req.body.productName;
+	var quantity = req.body.quantity;
+	var expectedOffer = req.body.expectedOffer;
+	var description = req.body.description;
+	var expiryDate = req.body.expiryDate;
+	var isValid = req.body.isValid;
+	var newCategoryId = req.body.categoryId;
+	dbConn.updateProduct(function(err,rows){
+		console.log(rows);
+		 res.send(rows);
+	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
+	
+};
+
+
+
 
 
 
