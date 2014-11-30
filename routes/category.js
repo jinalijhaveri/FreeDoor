@@ -24,7 +24,7 @@ function postComment(req , res){
 
 		res.send(JSON.stringify(respose));
 		//con.release();
-	})
+	});
 
 }
 
@@ -32,11 +32,8 @@ exports.postComment = postComment;
 
 
 
-var dbConn = require('../model/dbConnection');
-<<<<<<< HEAD
 //var categoryQuery = require('../models/categoryQuery');
-=======
->>>>>>> origin/master
+
 
 exports.getProductDetails = function(req, res){
 	var categoryId = req.params.categoryId;
@@ -61,7 +58,7 @@ exports.deleteProduct = function(req, res){
 	
 };
 
-<<<<<<< HEAD
+
 exports.getCategories = function(req, res){
 	console.log('Inside: getCategories category.js');
 	dbConn.getCategories(function(err,rows){
@@ -70,7 +67,9 @@ exports.getCategories = function(req, res){
 
 		 res.send(JSON.stringify(resposnse));
 	});
-=======
+	
+}
+
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
@@ -85,12 +84,22 @@ exports.updateProduct = function(req, res){
 		console.log(rows);
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
->>>>>>> origin/master
+
+}
+
+exports.getOfferHistory= function(req, res){
+	var offerId = req.params.offerId;
+	
+	dbConn.getOfferHistory(function(err,rows){
+		if(rows.length == 0)
+			res.send("Not found matching records.");
+		else
+		 res.send(rows);
+	},offerId);
 	
 };
 
 
-<<<<<<< HEAD
 exports.addCategories = function(req, res){
 
 	console.log('Inside: addCategories category.js');
@@ -109,7 +118,6 @@ exports.addCategories = function(req, res){
 	},categoryName);
 	
 };
-=======
 
 
 
