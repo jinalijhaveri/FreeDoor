@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var category = require('./routes/category');
 var http = require('http');
 var path = require('path');
 
@@ -30,7 +31,10 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get();
+app.get('/category/:categoryId/product/:productId', category.getProductDetails);
+app.delete('/category/:categoryId/product/:productId', category.deleteProduct);
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
