@@ -31,6 +31,7 @@ exports.deleteProduct = function(callback,productId,categoryId){
 			
 }
 
+<<<<<<< HEAD
 exports.getCategories = function(callback){
 	var query = 'select * from category';
 	console.log('Inside: dbConnection.js');
@@ -46,8 +47,20 @@ exports.addCategories = function(callback,categoryName){
 	console.log('Inside: dbConnection.js');
 	connection.query(query, function(err, rows) {
 			//connection.release();
+=======
+exports.updateProduct = function(callback,productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId){
+	var query = 'update product set productName="'+productName+'" ,quantity='+quantity+' ,expectedOffer="'+expectedOffer+'" ,productDesc="'+description+'"	,productExpiryDate="'+expiryDate+'" ,isValid='+isValid+' ,lastUpdated=now(),categoryId='+newCategoryId+' where productId='+productId+' and categoryId='+categoryId;
+	console.log("Update Product Query : "+query);
+	connection.query(query, function(err, rows) {
+			
+>>>>>>> origin/master
 			callback(err, rows);
 	});
 			
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master

@@ -33,7 +33,9 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/category/:categoryId/product/:productId', category.getProductDetails);
 app.delete('/category/:categoryId/product/:productId', category.deleteProduct);
-
+app.put('/category/:categoryId/product/:productId', category.updateProduct);
+app.get('/category/:categoryId/product', category.getProducts);
+app.post('/category/:categoryId/product', category.createProducts);
 
 ///nirav
 app.get('/category',category.getCategories);
