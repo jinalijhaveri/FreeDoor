@@ -33,15 +33,11 @@ function postComment(req , res){
 }
 
 exports.postComment = postComment;
-<<<<<<< HEAD
+
 
 
 
 var dbConn = require('../model/dbConnection');
-=======
-
-
->>>>>>> origin/master
 
 //var categoryQuery = require('../models/categoryQuery');
 
@@ -78,13 +74,13 @@ exports.getCategories = function(req, res){
 
 		 res.send(JSON.stringify(resposnse));
 	});
-<<<<<<< HEAD
+
 };
 
-=======
+
 	
-}
->>>>>>> origin/master
+
+
 
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
@@ -101,8 +97,6 @@ exports.updateProduct = function(req, res){
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
 
-<<<<<<< HEAD
-=======
 }
 
 exports.getOfferHistory= function(req, res){
@@ -114,15 +108,12 @@ exports.getOfferHistory= function(req, res){
 		else
 		 res.send(rows);
 	},offerId);
->>>>>>> origin/master
 	
 };
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
+
 exports.addCategories = function(req, res){
 
 	console.log('Inside: addCategories category.js');
@@ -141,10 +132,6 @@ exports.addCategories = function(req, res){
 	},categoryName);
 	
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 
 
 
@@ -237,36 +224,43 @@ exports.getProducts=function(req,res){
 	
 }
 
-<<<<<<< HEAD
 exports.getOffer = function(req, res){
-	var offerId = req.param('offerId');
+	var offerid = req.param('offerId');
 	var connection = dbCon.getCon();
-	var query = "select * from freedoor.offer where offerId = "+ offerId;
-	var query1 = "select commentDesc from freedoor.comment where offerId = " + offerId + " order by lastUpdated desc ";
-	console.log("query for offer is " + query);
-	connection.query(query , function(err , offer){
+	var fetch_offer = "select * from freedoor.offer where offerId = "+ offerid;
+	var fetch_comment = "select commentDesc from freedoor.comment where offerId = " + offerid + " order by lastUpdated desc ";
+	var fetch_offer_history = "select modified from freedoor.offerhistory where offerId = "+ offerid +" order by lastModified desc";
+	console.log("query for offer_history is " + fetch_offer_history);
+	connection.query(fetch_offer , function(err , offer){
 		
 		var ArrayOfcomments = [];
-		connection.query(query1 , function(err , comments){
+		connection.query(fetch_comment , function(err , comments){
 			
-			for(int i =0; i < comments.length ; i++){
+			connection.query(fetch_offer_history , function(err ,offer_history){
+				if(err){
+				res.send(err);
+			}
+
+			for(var i = 0; i < comments.length ; i++){
 				ArrayOfcomments.push(comments[i].commentDesc);
 			}
-			buyingQty   offeredDetails  buyerStatus  sellerStatus   offerExpiry   productId    buyerId   lastModified
+			
 
-			var response = {offerId : offerId , buyingQty : offer[0].buyingQty , offeredDetails: offer[0].offeredDetails,
+			var response = {offerId : offerid , buyingQty : offer[0].buyingQty , offeredDetails: offer[0].offeredDetails,
 			                 buyerStatus : offer[0].buyerStatus, sellerStatus : offer[0].sellerStatus ,
 			                 offerExpiry : offer[0].offerExpiry, productId : offer[0].productId, buyerId : offer[0].buyerId,
-			                 comments : ArrayOfcomments , lastEvent : comments[0].commentDesc; }
+			                 comments : ArrayOfcomments , lastEvent : offer_history[0].modified };
+             response = JSON.stringify(response); 
+             res.send(response);
+			 console.log("response is " + response);	
+			})
 
-			 console.log("response is " + response);
+			
 		})
 	})
 
 }
 
-=======
-<<<<<<< HEAD
 /////////////
 
 ///Adding and retriving offer
@@ -292,6 +286,4 @@ exports.addOffer = function (req , res){
 }
 
 
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+
