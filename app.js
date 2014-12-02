@@ -51,7 +51,7 @@ app.get('/category',category.getCategories);
 app.post('/category',category.addCategories);
 ///
 
-
+app.get('/category/:categoryId/product/:productId/offer/:offerId',category.getOffer)
 =======
 >>>>>>> origin/master
 >>>>>>> 3da8d630822db56aaba20ae485ee600a579b8eff

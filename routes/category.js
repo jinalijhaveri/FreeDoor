@@ -202,3 +202,30 @@ exports.getProducts=function(req,res){
 	
 }
 
+exports.getOffer = function(req, res){
+	var offerId = req.param('offerId');
+	var connection = dbCon.getCon();
+	var query = "select * from freedoor.offer where offerId = "+ offerId;
+	var query1 = "select commentDesc from freedoor.comment where offerId = " + offerId + " order by lastUpdated desc ";
+	console.log("query for offer is " + query);
+	connection.query(query , function(err , offer){
+		
+		var ArrayOfcomments = [];
+		connection.query(query1 , function(err , comments){
+			
+			for(int i =0; i < comments.length ; i++){
+				ArrayOfcomments.push(comments[i].commentDesc);
+			}
+			buyingQty   offeredDetails  buyerStatus  sellerStatus   offerExpiry   productId    buyerId   lastModified
+
+			var response = {offerId : offerId , buyingQty : offer[0].buyingQty , offeredDetails: offer[0].offeredDetails,
+			                 buyerStatus : offer[0].buyerStatus, sellerStatus : offer[0].sellerStatus ,
+			                 offerExpiry : offer[0].offerExpiry, productId : offer[0].productId, buyerId : offer[0].buyerId,
+			                 comments : ArrayOfcomments , lastEvent : comments[0].commentDesc; }
+
+			 console.log("response is " + response);
+		})
+	})
+
+}
+
