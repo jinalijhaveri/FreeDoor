@@ -1,6 +1,10 @@
 
 var mysql = require('mysql');
-var dbCon = require('./dbConnection');
+var dbCon = require('../model/dbConnection');
+var categoryQuery = require('../model/categoryQueries');
+var offerQuery = require('../model/offerQueries');
+var Offer = require('../modelclasses/Offer');
+
 
 function postComment(req , res){
 	var categoryId = req.param('categoryId');
@@ -24,19 +28,23 @@ function postComment(req , res){
 
 		res.send(JSON.stringify(respose));
 		//con.release();
-	})
+	});
 
 }
 
 exports.postComment = postComment;
+<<<<<<< HEAD
 
 
 
 var dbConn = require('../model/dbConnection');
-<<<<<<< HEAD
-//var categoryQuery = require('../models/categoryQuery');
 =======
+
+
 >>>>>>> origin/master
+
+//var categoryQuery = require('../models/categoryQuery');
+
 
 exports.getProductDetails = function(req, res){
 	var categoryId = req.params.categoryId;
@@ -61,16 +69,23 @@ exports.deleteProduct = function(req, res){
 	
 };
 
-<<<<<<< HEAD
+
 exports.getCategories = function(req, res){
 	console.log('Inside: getCategories category.js');
-	dbConn.getCategories(function(err,rows){
+	categoryQuery.getCategories(function(err,rows){
 		var resposnse = {'categories' : rows};
 		console.log(JSON.stringify(resposnse));
 
 		 res.send(JSON.stringify(resposnse));
 	});
+<<<<<<< HEAD
+};
+
 =======
+	
+}
+>>>>>>> origin/master
+
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
 	var productId = req.params.productId;
@@ -85,18 +100,35 @@ exports.updateProduct = function(req, res){
 		console.log(rows);
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
+
+<<<<<<< HEAD
+=======
+}
+
+exports.getOfferHistory= function(req, res){
+	var offerId = req.params.offerId;
+	
+	dbConn.getOfferHistory(function(err,rows){
+		if(rows.length == 0)
+			res.send("Not found matching records.");
+		else
+		 res.send(rows);
+	},offerId);
 >>>>>>> origin/master
 	
 };
 
 
 <<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 exports.addCategories = function(req, res){
 
 	console.log('Inside: addCategories category.js');
 	var categoryName = req.body.categoryName;
 
-	dbConn.addCategories(function(err,rows){
+	categoryQuery.addCategories(function(err,rows){
 		if(err){
 			console.log(err);
 		}else{
@@ -109,7 +141,10 @@ exports.addCategories = function(req, res){
 	},categoryName);
 	
 };
+<<<<<<< HEAD
+
 =======
+>>>>>>> origin/master
 
 
 
@@ -133,7 +168,7 @@ exports.getProducts=function(req,res){
 	var connection=mysql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
-		  password : 'jerrymouse',
+		  password : '1202',
 		  port: '3306',
 		  database: 'freedoor'
 		});
@@ -202,6 +237,7 @@ exports.getProducts=function(req,res){
 	
 }
 
+<<<<<<< HEAD
 exports.getOffer = function(req, res){
 	var offerId = req.param('offerId');
 	var connection = dbCon.getCon();
@@ -229,3 +265,33 @@ exports.getOffer = function(req, res){
 
 }
 
+=======
+<<<<<<< HEAD
+/////////////
+
+///Adding and retriving offer
+/////
+
+exports.addOffer = function (req , res){
+	var categoryId = req.param('categoryId');
+	var productId = req.param('productId');
+	var off =  new Offer(req);
+	
+	offerQuery.addOffer(function(err,rows){
+		if(err){
+			console.log(err);
+		}else{
+			//console.log(JSON.stringify(rows));
+			var resposnse = {offerId : rows.insertId,buyingQty : off.buyingQty,offeredDetails : off.offeredDetails,buyerStatus : off.buyerStatus
+			,sellerStatus : off.sellerStatus,offerExpiry : off.offerExpiry,productId : off.productId,buyerId : off.buyerId };
+			console.log("Inserted offer:  "+ JSON.stringify(resposnse));
+
+			 res.send(JSON.stringify(resposnse));
+		}
+	},off);
+}
+
+
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master

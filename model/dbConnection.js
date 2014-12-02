@@ -6,14 +6,27 @@ var mysql = require('mysql2');
 var connection = mysql.createConnection({
 	host : 'localhost',
 	user : 'root',
-<<<<<<< HEAD
-	password : 'jerrymouse',
-=======
+
 	password : '1202',
->>>>>>> origin/master
+
 	port : '3306',
 	database : 'freedoor'
 });
+
+
+function getCon(){
+	var connection=mysql.createConnection({
+		  host     : 'localhost',
+		  user     : 'root',
+		  password : '1202',
+		  port: '3306',
+		  database: 'freedoor'
+	});
+	return connection;
+}
+	
+
+exports.getCon = getCon;
 
 exports.getProductDetails = function(callback,productId,categoryId){
 	var query = 'select * from product where productId='+productId+' and categoryId='+categoryId;
@@ -36,6 +49,9 @@ exports.deleteProduct = function(callback,productId,categoryId){
 }
 
 <<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 exports.getCategories = function(callback){
 	var query = 'select * from category';
 	console.log('Inside: dbConnection.js');
@@ -51,12 +67,25 @@ exports.addCategories = function(callback,categoryName){
 	console.log('Inside: dbConnection.js');
 	connection.query(query, function(err, rows) {
 			//connection.release();
+<<<<<<< HEAD
+			callback(err,rows);
+	});
+}
+
+
 =======
+	});
+}
+	
+>>>>>>> origin/master
 exports.updateProduct = function(callback,productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId){
 	var query = 'update product set productName="'+productName+'" ,quantity='+quantity+' ,expectedOffer="'+expectedOffer+'" ,productDesc="'+description+'"	,productExpiryDate="'+expiryDate+'" ,isValid='+isValid+' ,lastUpdated=now(),categoryId='+newCategoryId+' where productId='+productId+' and categoryId='+categoryId;
 	console.log("Update Product Query : "+query);
 	connection.query(query, function(err, rows) {
 			
+<<<<<<< HEAD
+
+=======
 >>>>>>> origin/master
 			callback(err, rows);
 	});
@@ -65,6 +94,14 @@ exports.updateProduct = function(callback,productId,categoryId,productName,quant
 
 <<<<<<< HEAD
 =======
-
+exports.getOfferHistory = function(callback,offerId){
+	var query = 'select * from offerhistory where offerId='+offerId;
+	console.log("Get Offer History : "+query);
+	connection.query(query, function(err, rows) {
+			
+			callback(err, rows);
+	});
+			
+}
 
 >>>>>>> origin/master
