@@ -36,3 +36,55 @@ exports.getoffers = function(req, res){
 		 res.send(JSON.stringify(resposnse));
 	},productId);
 };
+
+
+exports.updateOffer=function(req,res){
+	console.log("inside put offer");
+	var offerId =req.param('offerId');
+	var buyingQty=req.body.buyingQty;
+	var offeredDetails=req.body.offeredDetails;
+	var buyerStatus=req.body.buyerStatus;
+	var sellerStatus=req.body.sellerStatus;
+	var offerExpiry=req.body.offerExpiry;
+	
+	var buyerId=req.body.buyerId;
+	var lastModified=req.body.lastModified;
+	
+	var categoryId=req.param('categoryId');
+	var productId=req.param('productId');
+	dbConn.updateOffer(offerId,buyingQty,offeredDetails,buyerStatus,sellerStatus,offerExpiry,productId,buyerId,lastModified,categoryId,function(err,rows,CommentRows){
+		if(err){
+			console.log(err+" in ossrvc");
+		}
+		else{
+			makeReply(rows,CommentRows,function(reply){
+				res.send(reply);
+			})
+		}
+	});
+	
+}
+
+makeReply=function(rows,CommentRows,callback){
+	reply1={ offerId : rows[0].offerId,  buyingQty : rows[0].buyingQty,  offeredDetails : rows[0].offeredDetails,  buyerStatus : rows[0].buyerStatus,  sellerStatus : rows[0].sellerStatus,  offerExpiry :rows[0].offerExpiry ,  productId : rows[0].productId,  buyerId:rows[0].buyerId ,  lastModified:rows[0].lastModified ,  comments : CommentRows};
+		console.log("reply "+JSON.stringify(reply1));
+	callback(JSON.stringify(reply1));
+}
+
+exports.deleteOffer=function(req,res){
+	offerId=req.param('offerId');
+	console.log("offerID "+offerId);
+	dbConn.deleteOffer(offerId,function(err,rows){
+		if(err){
+			console.log(err);
+		}else{
+			console.log("success");
+			res.send(rows);
+		}
+	})
+}
+
+
+
+
+

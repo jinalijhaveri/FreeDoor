@@ -1,0 +1,33 @@
+<html>
+<title>
+</title>
+<body>
+
+	Loading
+	<script type="text/javascript">
+jQuery.ajax({
+        url: "/category/1/product",
+        type: "Post",
+        data: {
+          "productName": "T-shirt",  
+          "quantity": 5,  
+          "userId" : 1,
+          "expectedOffer": "I would like to get Cardigan.",
+          "productDesc":"Nike T-shirt",
+          "productExpiryDate":"2014-12-31",
+          "isValid":1,
+          "categoryId":2
+          "lastUpdated" : "2014-12-31"
+        }
+        success: function(data,textStatus,jqXHR){
+          console.log("Post response");
+          console.dir(data);
+          console.log(textStatus);
+          console.dir(jqXHR);
+        }
+
+    });
+
+	</script>
+</body>
+</html>

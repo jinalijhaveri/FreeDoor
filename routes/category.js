@@ -33,16 +33,10 @@ function postComment(req , res){
 }
 
 exports.postComment = postComment;
-<<<<<<< HEAD
 
 
 
 var dbConn = require('../model/dbConnection');
-=======
-
-
->>>>>>> origin/master
-
 //var categoryQuery = require('../models/categoryQuery');
 
 
@@ -78,13 +72,11 @@ exports.getCategories = function(req, res){
 
 		 res.send(JSON.stringify(resposnse));
 	});
-<<<<<<< HEAD
+
 };
 
-=======
-	
-}
->>>>>>> origin/master
+
+
 
 exports.updateProduct = function(req, res){
 	var categoryId = req.params.categoryId;
@@ -101,8 +93,7 @@ exports.updateProduct = function(req, res){
 		 res.send(rows);
 	},productId,categoryId,productName,quantity,expectedOffer,description,expiryDate,isValid,newCategoryId);
 
-<<<<<<< HEAD
-=======
+
 }
 
 exports.getOfferHistory= function(req, res){
@@ -114,15 +105,11 @@ exports.getOfferHistory= function(req, res){
 		else
 		 res.send(rows);
 	},offerId);
->>>>>>> origin/master
-	
+
 };
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 exports.addCategories = function(req, res){
 
 	console.log('Inside: addCategories category.js');
@@ -141,19 +128,29 @@ exports.addCategories = function(req, res){
 	},categoryName);
 	
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
-
-
 
 
 mysql=require('mysql');
 
 
 exports.createProducts=function(req,res){
+	categoryId=req.param('categoryId');
 	prodName=req.body.productName.replace("''","");
+	quantity=req.body.quantity.replace("''","");
+	userId=req.body.userId.replace("''","");
+	expectedOffer=req.body.expectedOffer.replace("''","");
+	productDesc=req.body.productDesc.replace("''","");
+	productExpiryDate=req.body.productExpiryDate.replace("''","");
+	isValid=req.body.isValid.replace("''","");
+	categoryId=req.body.categoryId.replace("''","");
+	lastUpdated=req.body.lastUpdated.replace("''","");
+	
+	dbCon.insertProduct(function(err,rows){
+		console.log(rows);
+		res.send(rows);
+	},categoryId,quantity,userId,expectedOffer,productDesc,productExpiryDate,isValid,categoryId,lastUpdated);
+	
+	
 	//res.writeHead(200, {"Content-Type": "application/json"});
 	var json=JSON.stringify({prodName:prodName,value:"1"});
 	console.log(json)
@@ -164,11 +161,12 @@ exports.createProducts=function(req,res){
 
 
 exports.getProducts=function(req,res){
+	console.log("getrProducts called");
 	
 	var connection=mysql.createConnection({
 		  host     : 'localhost',
 		  user     : 'root',
-		  password : '1202',
+		  password : 'jerrymouse',
 		  port: '3306',
 		  database: 'freedoor'
 		});
@@ -229,16 +227,13 @@ exports.getProducts=function(req,res){
 			
 			
 			res.render('productListing.ejs',{responseJson:responseJson,category:category});
-
-			
 		});
 	});
 
 	
 }
 
-<<<<<<< HEAD
-/////////////
+
 
 ///Adding and retriving offer
 /////
@@ -263,5 +258,3 @@ exports.addOffer = function (req , res){
 }
 
 
-=======
->>>>>>> origin/master
